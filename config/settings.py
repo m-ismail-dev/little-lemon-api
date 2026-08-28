@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'LittleLemonAPI.apps.LittlelemonapiConfig',
+    'rest_framework',
     'debug_toolbar',
 ]
 
@@ -127,3 +128,12 @@ INTERNAL_IPS = [
     '127.0.0.1',
     'localhost',
 ]
+
+# Django Rest Framework
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+}
