@@ -7,6 +7,7 @@ from . import views
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register('menu-items', views.MenuItemViewSet)
+router.register('categories', views.CategoryViewSet)
 
 urlpatterns = [
     path('api/', include((router.urls, 'LittleLemonAPI'))),
