@@ -4,6 +4,12 @@ from rest_framework import viewsets, permissions
 
 from . import models, serializers
 
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = models.Category.objects.all()
+    serializer_class = serializers.CategorySerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
 class MenuItemViewSet(viewsets.ModelViewSet):
     queryset = models.MenuItem.objects.all()
     serializer_class = serializers.MenuItemSerializer
