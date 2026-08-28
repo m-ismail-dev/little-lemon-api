@@ -35,6 +35,9 @@ class CartItem(models.Model):
     class Meta:
         unique_together = ['user', 'menu_item']
 
+    def __str__(self):
+        return f"{self.menu_item} > {self.user}"
+
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
