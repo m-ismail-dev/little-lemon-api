@@ -11,4 +11,6 @@ router.register('categories', views.CategoryViewSet)
 
 urlpatterns = [
     path('api/', include((router.urls, 'LittleLemonAPI'))),
+    path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.jwt')),
 ]
