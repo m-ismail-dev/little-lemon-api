@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'LittleLemonAPI.apps.LittleLemonApiConfig',
+    'LittleLemonAPI.apps.LittlelemonapiConfig',
     'debug_toolbar',
 ]
 
