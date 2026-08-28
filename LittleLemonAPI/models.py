@@ -46,6 +46,9 @@ class Order(models.Model):
     total = models.DecimalField(max_digits=6, decimal_places=2)
     date = models.DateField(db_index=True, default=datetime.date.today)
 
+    def __str__(self):
+        return f"order of {self.user}"
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
