@@ -1,6 +1,7 @@
 from django.contrib import admin
 from . import models
 from django.contrib.auth.models import Group
+from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 
 
 @admin.register(models.Category)
@@ -32,7 +33,7 @@ class CartItemAdmin(admin.ModelAdmin):
 admin.site.unregister(Group)
 
 @admin.register(Group)
-class GroupAdmin(admin.ModelAdmin):
+class GroupAdmin(BaseGroupAdmin):
     list_display = ['name', 'num_members', 'num_perms']
 
     @admin.display(description='Number of members')
