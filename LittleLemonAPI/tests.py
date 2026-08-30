@@ -8,7 +8,7 @@ from .models import Category, MenuItem
 class LittleLemonAPITestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.manager_group, _ = Group.objects.get_or_create(name='Manager')
+        self.manager_group, _ = Group.objects.get_or_create(name='Managers')
         self.delivery_group, _ = Group.objects.get_or_create(name='Delivery crew')
 
         self.customer = User.objects.create_user(username='customer', password='testpass123')
