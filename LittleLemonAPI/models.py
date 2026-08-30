@@ -25,15 +25,15 @@ class MenuItem(models.Model):
         return self.title
 
 
-class Order(models.Model):
+class CartItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    delivery_crew = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='delivery_crew')
-    status = models.BooleanField(default=0, db_index=True)
-    total = models.DecimalField(max_digits=6, decimal_places=2)
-    date = models.DateField(db_index=True, default=datetime.date.today)
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    quanity = models.SmallIntegerField()
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
 
-    def __str__(self):
-        return f"order of {self.user}"
+    class Meta:
+        unique_together = ['user', 'menu_item']
 
 
 class OrderItem(models.Model):
@@ -49,16 +49,16 @@ class OrderItem(models.Model):
     def __str__(self):
         return f"{self.menu_item} > {self.user}"
 
-
-class CartItem(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-    quanity = models.SmallIntegerField()
-    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-
-    class Meta:
-        unique_together = ['user', 'menu_item']
-
     def __str__(self):
         return f"{self.menu_item} > {self.user}"
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    delivery_crew = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='delivery_crew')
+    status = models.BooleanField(default=0, db_index=True)
+    total = models.DecimalField(max_digits=6, decimal_places=2)
+    date = models.DateField(db_index=True, default=datetime.date.today)
+
+    def __str__(self):
+        return f"order of {self.user}"
