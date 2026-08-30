@@ -32,10 +32,10 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 
 class ManagerViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.get(name='Managers').user_set.all()
+    queryset = Group.objects.get_or_create(name='Managers')[0].user_set.all()
     serializer_class = serializers.UserSerializer
 
 
 class DeliveryCrewViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.get(name='Delivery crew').user_set.all()
+    queryset = Group.objects.get_or_create(name='Delivery crew')[0].user_set.all()
     serializer_class = serializers.UserSerializer
