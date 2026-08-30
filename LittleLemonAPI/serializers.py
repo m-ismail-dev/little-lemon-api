@@ -45,3 +45,9 @@ class CartItemSerializer(serializers.ModelSerializer):
         model = models.CartItem
         fields = ['id', 'menu_item', 'menu_item_id', 'quantity', 'unit_price', 'price']
         read_only_fields = ['user', 'unit_price', 'price']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
