@@ -19,11 +19,11 @@ class CartItemViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.CartItemSerializer
 
 
-class OrderViewSet(viewsets.ModelViewSet):
-    queryset = models.Order.objects.all()
-    serializer_class = serializers.OrderSerializer
-
-
 class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = models.OrderItem.objects.all()
     serializer_class = serializers.OrderItemSerializer
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = models.Order.objects.all()
+    serializer_class = serializers.OrderSerializer
