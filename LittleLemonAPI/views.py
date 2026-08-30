@@ -1,8 +1,10 @@
 # (بسم الله الرحمن الرحيم)
 
 from rest_framework import viewsets
+from django.contrib.auth.models import Group
 
 from . import models, serializers
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = models.Category.objects.all()
@@ -27,3 +29,13 @@ class OrderItemViewSet(viewsets.ModelViewSet):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = models.Order.objects.all()
     serializer_class = serializers.OrderSerializer
+
+
+class ManagerViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.get(name='Managers').user_set.all()
+    serializer_class = serializers.UserSerializer
+
+
+class DeliveryCrewViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.get(name='Delivery Crew').user_set.all()
+    serializer_class = serializers.UserSerializer
