@@ -25,20 +25,6 @@ class MenuItem(models.Model):
         return self.title
 
 
-class CartItem(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-    quanity = models.SmallIntegerField()
-    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-
-    class Meta:
-        unique_together = ['user', 'menu_item']
-
-    def __str__(self):
-        return f"{self.menu_item} > {self.user}"
-
-
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     delivery_crew = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='delivery_crew')
@@ -59,6 +45,20 @@ class OrderItem(models.Model):
 
     class Meta:
         unique_together = ['order', 'menu_item']
+
+    def __str__(self):
+        return f"{self.menu_item} > {self.user}"
+
+
+class CartItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    quanity = models.SmallIntegerField()
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+
+    class Meta:
+        unique_together = ['user', 'menu_item']
 
     def __str__(self):
         return f"{self.menu_item} > {self.user}"
