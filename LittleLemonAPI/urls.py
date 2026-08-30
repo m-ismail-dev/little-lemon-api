@@ -8,6 +8,9 @@ from . import views
 router = routers.DefaultRouter(trailing_slash=False)
 router.register('menu-items', views.MenuItemViewSet)
 router.register('categories', views.CategoryViewSet)
+router.register('cart-items', views.CartItemViewSet)
+router.register('orders', views.OrderViewSet)
+router.register('order-items', views.OrderItemViewSet)
 
 urlpatterns = [
     path('api/', include((router.urls, 'LittleLemonAPI'))),
