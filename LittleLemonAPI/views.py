@@ -37,5 +37,5 @@ class ManagerViewSet(viewsets.ModelViewSet):
 
 
 class DeliveryCrewViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.get(name='Delivery Crew').user_set.all()
+    queryset = Group.objects.get(name='Delivery crew').user_set.all()
     serializer_class = serializers.UserSerializer
