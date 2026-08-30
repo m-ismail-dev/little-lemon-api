@@ -34,3 +34,13 @@ class OrderSerializer(serializers.ModelSerializer):
         model = models.Order
         fields = ['id', 'user', 'delivery_crew', 'status', 'total', 'date', 'order_items']
         read_only_fields = ['user', 'delivery_crew', 'order_items']
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    menu_item = MenuItemSerializer()
+    menu_item_id = serializers.IntegerField(write_only=True, required=False)
+
+    class Meta:
+        model = models.CartItem
+        fields = ['id', 'menu_item', 'menu_item_id', 'quantity', 'unit_price', 'price']
+        read_only_fields = ['user', 'unit_price', 'price']
