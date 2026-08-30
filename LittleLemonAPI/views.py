@@ -12,3 +12,18 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class MenuItemViewSet(viewsets.ModelViewSet):
     queryset = models.MenuItem.objects.all()
     serializer_class = serializers.MenuItemSerializer
+
+
+class CartItemViewSet(viewsets.ModelViewSet):
+    queryset = models.CartItem.objects.all()
+    serializer_class = serializers.CartItemSerializer
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = models.Order.objects.all()
+    serializer_class = serializers.OrderSerializer
+
+
+class OrderItemViewSet(viewsets.ModelViewSet):
+    queryset = models.OrderItem.objects.all()
+    serializer_class = serializers.OrderItemSerializer
