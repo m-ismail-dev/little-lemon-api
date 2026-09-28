@@ -2,8 +2,12 @@
 
 from rest_framework import viewsets
 from django.contrib.auth.models import Group
+from django.contrib.auth import get_user_model
 
 from . import models, serializers
+
+
+User = get_user_model()
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -32,10 +36,16 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 
 class ManagerViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.get_or_create(name='Managers')[0].user_set.all()
+    queryset = User.objects.none()
     serializer_class = serializers.UserSerializer
+
+    def get_queryset(self):
+        return User.objects.filter(groups__name='Managers')
 
 
 class DeliveryCrewViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.get_or_create(name='Delivery crew')[0].user_set.all()
+    queryset = User.objects.none()
     serializer_class = serializers.UserSerializer
+
+    def get_queryset(self):
+        return User.objects.filter(groups__name='Delivery crew')
